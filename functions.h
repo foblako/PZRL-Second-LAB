@@ -5,6 +5,13 @@
 int get_first_index(char* num);
 int get_sign(char* num);
 int check_system_of_input(char* input);
+int do_operation(int n1, int n2, char o);
+int unary_operation(char* input);
+int binary_operation(char* input);
+int to_int(char* number, int system);
+
+
+
 
 int if_bin(char* num);
 int if_oct(char* num);
