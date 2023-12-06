@@ -78,7 +78,82 @@ int unary_operation(char* input)
 
 int binary_operation(char* input)
 {
+    char first_number[SIZE];
+    char second_number[SIZE];
+
+    memset(first_number, 0, sizeof(first_number));
+    memset(second_number, 0, sizeof(second_number));
+
+    char operation;
+    int slide = -1;
+
+    for (int i = 0; i < strlen(input); i++)
+    {
+        if (isspace(input[i])) { continue; }
+        if ((input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '&' || input[i] == '|' || input[i] == '^') && slide == 1)
+        {
+            operation = input[i];
+            slide = 2;
+            continue;
+        }
+        if (slide == 1 || slide == -1)
+        {
+            slide = 1;
+            first_number[strlen(first_number)] = input[i];
+        } else
+        {
+            second_number[strlen(second_number)] = input[i];
+        }
+    }
+
+    int first_system = check_system_of_input(first_number);
+    int second_system = check_system_of_input(second_number);
+    
+    if (first_system != second_system || first_system == -1 || second_system == -1)
+    {
+        printf("Системы счисления не совпадают, либо число/а не в 2/8/16 системах!");
+        return 1;
+    }
+
+    if (system_correct(first_number, first_system) == 1 || system_correct(second_number, second_system) == 1)
+    {
+        printf("Неверное число!");
+        return 0;
+    }
+    
+    int int_first_number = to_int(first_number, first_system);
+    int int_second_number = to_int(second_number, second_system);
+
+    if ((operation == '&' || operation == '|' || operation == '^') && (int_first_number < 0 || int_second_number  < 0))
+    {
+        printf("Эта операция [%c] над отрицательными числами запрещена!", operation);
+        return 0;
+    }
+    
+    if (operation == '/' && int_second_number == 0)
+    {
+        printf("Деление на ноль запрещено!");
+        return 0;
+    }
+
+    int res = do_operation(int_first_number, int_second_number, operation);
+    show_result(res, first_system);
+
     return 0;
+}
+
+int system_correct(char* number, int system)
+{
+    switch (system) {
+        case 2:
+            return if_bin(number);
+        case 8:
+            return if_oct(number);
+        case 16:
+            return if_hex(number);
+        default:
+            return 1;
+    }
 }
 
 int to_int(char* number, int system)
