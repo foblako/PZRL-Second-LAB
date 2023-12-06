@@ -3,8 +3,15 @@
 
 
 int get_first_index(char* num);
+int get_sign(char* num);
 int check_system_of_input(char* input);
 
 int if_bin(char* num);
 int if_oct(char* num);
 int if_hex(char* num);
+
+int convert_from_bin_to_int(char* num);
+
+
+
+char* convert_from_int_to_bin(int num);
