@@ -71,7 +71,7 @@ int unary_operation(char* input)
     int system = check_system_of_input(number);
     int num = to_int(number, system);
 
-    // сделать унарное отрицание!
+    show_result(~num, system);
 
     return 0;
 }
@@ -94,4 +94,40 @@ int to_int(char* number, int system)
     default:
         return -1;
     }
+}
+
+void show_result(int num, int system)
+{
+    char* res;
+    int len;
+    int sign = 1;
+    if (num < 0)
+    {
+        sign = -1;
+        printf("-");
+    }
+    switch (system)
+    {
+    case 2:
+            res = convert_from_int_to_bin(num);
+            len = strlen(res);
+            if (len){ printf("%s  (%d)\n", res, num);} 
+            else { printf("0   (0)\n");} 
+            break;      
+    case 8:
+            res = convert_from_int_to_oct(num);
+            len = strlen(res);
+            if (len){ printf("0%s  (%d)\n", res, num);} 
+            else { printf("00   (0)\n");} 
+            break;
+    case 16:
+            res = convert_from_int_to_hex(num);
+            len = strlen(res);
+            if (len){ printf("0x%s  (%d)\n", res, num);} 
+            else { printf("0x0   (0)\n");} 
+            break;        
+    default:
+        return;
+    }
+    free(res);
 }

@@ -9,7 +9,7 @@ int do_operation(int n1, int n2, char o);
 int unary_operation(char* input);
 int binary_operation(char* input);
 int to_int(char* number, int system);
-
+void show_result(int num, int system);
 
 
 
