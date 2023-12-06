@@ -7,12 +7,11 @@
 
 int main()
 {
-    printf("%d\n", if_bin("101010110"));
-    printf("%d\n", if_oct("0101010110"));
-    printf("%d\n", if_hex("0x1e0101ace0110"));
+    char* input = NULL;
+    size_t size_of_input = 0;
+    getline(&input, &size_of_input, stdin);
+    choose_mode_of_calculator(input);
 
-    printf("%d\n", convert_from_bin_to_int("10100"));
-    printf("%d\n", convert_from_oct_to_int("0101500"));
-    printf("%d\n", convert_from_hex_to_int("0xF"));
+    free(input);
     return 0;
 }

@@ -1,6 +1,7 @@
 // реализация общих функций для всех систем счисления
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include <ctype.h>
 
 #include "functions.h"
@@ -37,18 +38,25 @@ int do_operation(int n1, int n2, char o)
     {
     case '+':
         return n1 + n2;
+        break;
     case '-':
         return n1 - n2;
+        break;
     case '*':
         return n1 * n2;
+        break;
     case '/':
         return n1 / n2;
+        break;
     case '&':
         return n1 & n2;
+        break;
     case '|':
         return n1 | n2;
+        break;
     case '^':
         return n1 ^ n2;
+        break;
     default:
         return -1;
     }
@@ -162,10 +170,13 @@ int to_int(char* number, int system)
     {
     case 2:
         convert_from_bin_to_int(number);
+        break;
     case 8:
         convert_from_oct_to_int(number);
+        break;
     case 16:
         convert_from_hex_to_int(number);
+        break;
     default:
         return -1;
     }
@@ -205,4 +216,10 @@ void show_result(int num, int system)
         return;
     }
     free(res);
+}
+
+int choose_mode_of_calculator(char* input)
+{
+    if (input[0] == '~'){ return unary_operation(input);} 
+    else{ return binary_operation(input); }
 }

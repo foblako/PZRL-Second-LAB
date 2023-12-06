@@ -11,7 +11,7 @@ int binary_operation(char* input);
 int system_correct(char* number, int system);
 int to_int(char* number, int system);
 void show_result(int num, int system);
-
+int choose_mode_of_calculator(char* input);
 
 
 int if_bin(char* num);
