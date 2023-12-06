@@ -7,6 +7,7 @@
 
 int main()
 {
+    
     char* input = NULL;
     size_t size_of_input = 0;
     getline(&input, &size_of_input, stdin);

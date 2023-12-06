@@ -24,21 +24,20 @@ int convert_from_bin_to_int(char* num)
     return res * sign;
 }
 
-char* convert_from_int_to_bin(int num)
+char* convert_from_int_to_bin(int number)
 {
-    char* reversed_res = (char*) malloc(sizeof(char));
-    while (num > 0)
-    {
-        reversed_res = (char*) realloc(reversed_res, strlen(reversed_res) + 1);
-        reversed_res[strlen(reversed_res)] = num % 2 + '0';
-        num /= 2;
+    char *result_reversed = (char *) malloc(sizeof(char));
+    while (number > 0) {
+        int digit = number % 2;
+        result_reversed = (char *) realloc(result_reversed, (strlen(result_reversed) + 1) * sizeof(char));
+        result_reversed[strlen(result_reversed)] = digit + '0';
+        number /= 2;
     }
-    char* res = (char*) malloc(sizeof(char));
-    for (int i = strlen(reversed_res) - 1; i >= 0; i--)
-    {
-        res = (char*) realloc(res, strlen(res) + 1);
-        res[strlen(res)] = reversed_res[i];
+    char *result = (char *) malloc(sizeof(char));
+    for (int i = strlen(result_reversed) - 1; i >= 0; i--) {
+        result = (char *) realloc(result, (strlen(result) + 1) * sizeof(char));
+        result[strlen(result)] = result_reversed[i];
     }
-    free(reversed_res);
-    return res;
+    free(result_reversed);
+    return result;
 }

@@ -18,7 +18,7 @@ int get_first_index(char* num)
 int get_sign(char* num)
 {
     int sign = 1;
-    if (num[0] == '-') { sign--; }
+    if (num[0] == '-') { sign = -1; }
     return sign;
 }
 
@@ -195,27 +195,29 @@ void show_result(int num, int system)
     switch (system)
     {
     case 2:
-            res = convert_from_int_to_bin(num);
+            res = convert_from_int_to_bin(num * sign);
             len = strlen(res);
             if (len){ printf("%s  (%d)\n", res, num);} 
-            else { printf("0   (0)\n");} 
+            else { printf("0   (0)\n");}
+            free(res); 
             break;      
     case 8:
-            res = convert_from_int_to_oct(num);
+            res = convert_from_int_to_oct(num * sign);
             len = strlen(res);
             if (len){ printf("0%s  (%d)\n", res, num);} 
             else { printf("00   (0)\n");} 
+            free(res);
             break;
     case 16:
-            res = convert_from_int_to_hex(num);
+            res = convert_from_int_to_hex(num * sign);
             len = strlen(res);
             if (len){ printf("0x%s  (%d)\n", res, num);} 
             else { printf("0x0   (0)\n");} 
+            free(res);
             break;        
     default:
         return;
     }
-    free(res);
 }
 
 int choose_mode_of_calculator(char* input)
