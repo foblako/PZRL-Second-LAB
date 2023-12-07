@@ -48,6 +48,9 @@ int do_operation(int n1, int n2, char o)
     case '/':
         return n1 / n2;
         break;
+    case '%':
+        return n1 % n2;
+        break;
     case '&':
         return n1 & n2;
         break;
@@ -98,7 +101,7 @@ int binary_operation(char* input)
     for (int i = 0; i < strlen(input); i++)
     {
         if (isspace(input[i])) { continue; }
-        if ((input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '&' || input[i] == '|' || input[i] == '^') && slide == 1)
+        if ((input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == '%' || input[i] == '&' || input[i] == '|' || input[i] == '^') && slide == 1)
         {
             operation = input[i];
             slide = 2;
