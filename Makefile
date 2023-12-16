@@ -2,7 +2,7 @@
 all: calculator
 clean: 
 	rm -rf calculator *.o
-run:
+run: calculator
 	./calculator
 main.o: main.c
 	gcc -c main.c
